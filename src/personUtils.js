@@ -47,11 +47,7 @@ function generateOnClicks(data) {
       document.getElementById("id").value = p.id
       document.getElementById("fname").value = p.firstName
       document.getElementById("lname").value = p.lastName
-      document.getElementById("phone").value = p.phoneNumber
-      document.getElementById("street").value = p.address.street
-      document.getElementById("zip").value = p.address.zip
-      document.getElementById("city").value = p.address.city
-      $("#myModal").modal("show")
+      $("#myModal").modal("toggle")
     })
     //delete button
     const deleteButtonNode = document.getElementById(`deleteperson${p.id}`)

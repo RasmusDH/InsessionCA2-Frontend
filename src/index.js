@@ -1,6 +1,6 @@
 import "./style.css"
-import "bootstrap"
 import "bootstrap/dist/css/bootstrap.css"
+import "bootstrap"
 import $ from "jquery"
 import { findAllPeople, handlePersonInput } from "./personFacade"
 
