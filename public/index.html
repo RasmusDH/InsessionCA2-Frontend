@@ -1,105 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Webpack/Babel-demo</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack/Babel-demo</title>
-</head>
-
-<body>
-  <!--
-    This div is added to remove the flicker that comes from bootstrap being loaded
-    first in index.js
-    REMEMBER to set display to "block" in index.js, otherwise you will not see anything
-  -->
-  <div id="all-content" style="display: none;">
-    <ul id="menu" class="header">
-      <li><a href="" id="about">About</a></li>
-      <li><a href="" id="ex1">Ex1</a></li>
-      <li><a href="" id="ex2">Ex2</a></li>
-      <li><a href="" id="ex3">Ex3</a></li>
-    </ul>
-
-    <div class="content">
-
-      <!-- This is were you should place your basic HTML for exercise-1 -->
-      <div id="ex1_html" style="display:none;">
-        <h3>Exercise 1</h3>
-        <p>Add your basic HTML for Exercise 1 here</p>
-        <ul id="jokes"></ul>
-
-      </div>
-      <!-- End of HTML for exercise-1 -->
-
-
-
-      <!-- This is were you should place your basic HTML for exercise-2 -->
-      <div id="ex2_html" style="display:none;">
-        <h3>Exercise 2</h3>
-        <p id="ex2p">Add your basic HTML for Exercise 2 here</p>
-      </div>
-      <!-- End of HTML for exercise-2 -->
-
-
-      <!-- This is were you should place your basic HTML for exercise-3 -->
-      <div id="ex3_html" style="display:none;">
-        <h3>Ex-3</h3>
-        <p>Add your basic HTML for Exercise 3 here</p>
-
-        <div class="row" style="min-height: 5em;"">
-      <div class=" col-md-8 pre-scrollable" style="background-color: lightgrey;">
-          <h5>All Users</h5>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Age</th>
-                <th>Name
-                <th>
-                <th>Gender</th>
-                <th>Email </th>
-            </thead>
-            <tbody id="allUserRows">
-            <tbody>
-          </table>
-        </div>
-        <div class="col-md-4" style="background-color: powderblue;">
-          <h5>Find User</h5>
-        </div>
-      </div>
-      <div class="row" style="min-height: 5em;">
-        <div class="col-md-4" style="background-color: powderblue;">
-          <h5>Add User</h5>
-        </div>
-        <div class="col-md-4" style="background-color: lightgrey;">
-          <h5>Edit User</h5>
-        </div>
-        <div class="col-md-4" style="background-color: powderblue;">
-          <h5>Delete User</h5>
-        </div>
-      </div>
-      <!-- </div> -->
-      <!-- End of HTML for exercise-3 -->
-
-      <!---- HTML for the About page -->
-
+  <body class="container">
+    <h2>All Persons</h2>
+    <div style="min-height: 200px">
+      <table class="table" style="width: 90%">
+        <thead>
+          <tr>
+            <td>ID</td>
+            <td>First Name</td>
+            <td>Last name</td>
+            <td>Phone</td>
+            <td>Street</td>
+            <td>Zip</td>
+            <td>City</td>
+            <td>Edit</td>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
     </div>
+    <button type="button" id="reload" class="btn btn-secondary">
+      Reload Data
+    </button>
+    <button
+      type="button"
+      id="addPerson"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#myModal"
+    >
+      Add New Person
+    </button>
+    <button
+      type="button"
+      id="addPerson"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#myModal"
+    >
+      Add New Person
+    </button>
+    <a h></a>
+    <div
+      id="error"
+      class="alert alert-danger"
+      role="alert"
+      style="width: 50%; margin-top: 10px"
+    ></div>
+    
+    <div
+      class="alert alert-success"
+      style="width: 50%; margin-top: 10px"
+      id="success"
+    ></div>
 
-    <div id="about_html" style="display:none;">
-      <h3>About</h3>
-      <p>Watch the small video given as intro to this code, BEFORE you start using it</p>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="myModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myModalLabel"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div id="header" class="modal-header">
+            <p>Add Person</p>
+          </div>
+
+          <form id="add-person-form">
+            <div class="modal-body">
+              <input type="hidden" id="id" />
+              <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" class="form-control" id="fname" />
+              </div>
+              <div class="form-group">
+                <label for="email">Last Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="lname"
+                  id="lname"
+                />
+              </div>
+              <div class="form-group">
+                <label for="phone">phone</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="phone"
+                  id="phone"
+                />
+              </div>
+              <div class="form-group">
+                <label for="street">Street</label>
+                <input type="text" class="form-control" id="street" />
+              </div>
+              <div class="form-group">
+                <label for="zip">Zip</label>
+                <input type="text" class="form-control" id="zip" />
+              </div>
+              <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" id="city" />
+              </div>
+
+              <!-- Allow form submission with keyboard without duplicating the dialog button -->
+              <input
+                type="submit"
+                tabindex="-1"
+                style="position: absolute; top: -1000px"
+              />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-default"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                id="savebtn"
+                class="btn btn-primary"
+                data-dismiss="modal"
+              >
+                Save changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-    <!-- End of HTML for ABOUT Page -->
-
-
-    <!--End of all content -->
-  </div>
-
-  <!-- #################################################################-->
-  <!-- IMPORTANT  DO NOT IMPORT ANY JavaScript in this file by YOURSELF -->
-  <!-- #################################################################-->
-
-</body>
-
+  </body>
 </html>
