@@ -1,34 +1,58 @@
 import $ from "jquery"
-
+import { handleDeletePerson } from "./personFacade"
 
 const urls = {
-    all: "https://api.tobias-z.com/insession-CA2/person/",
-    
-  }
+  all: "https://api.tobias-z.com/insession-CA2/api/person/",
+  byId: id => `https://api.tobias-z.com/insession-CA2/api/person/`,
+}
 
-
-  function generateListFromPeople(data) {
-    const rows = data.all.map(
-      p => `
-      <tr>
-        <td>${p.id}</td>
-        <td>${p.firstName}</td>
-        <td>${p.lastName}</td>
-        <td>${p.phoneNumber}</td>
-        <td>${p.address.street}</td>
-        <td>${p.address.zip}</td>
-        <td>${p.address.city}</td>
-        <td>
-        <a href="#" id="editperson${p.id}">Edit</a>
-        / 
-        <a href="#" id="deleteperson${p.id}">delete</a>
-        </td>
-      </tr>
-    `
+function handlePersonErrors(err) {
+  if (err.status) {
+    const errorNode = document.getElementById("error")
+    console.log(err)
+    err.fullError.then(
+      error => (errorNode.innerText = error.code + ": " + error.message)
     )
-  
-    return rows.join("")
+  } else {
+    console.error(err)
   }
+}
 
+function generateListFromPeople(data) {
+  const rows = data.all.map(
+    p => `
+    <tr>
+    <td>${p.id}</td>
+    <td>${p.firstName}</td>
+    <td>${p.lastName}</td>
+    <td>${p.email}</td>
+    <td>
+      <a href="#" id="editperson${p.id}">Edit</a>
+      / 
+      <a href="#" id="deleteperson${p.id}">delete</a>
+      </td>
+    </tr>
+  `
+  )
 
-  export { urls, generateListFromPeople}
+  return rows.join("")
+}
+
+function generateOnClicks(data) {
+ data.all.map(p => {
+    //edit button
+    const editButtonNode = document.getElementById(`editperson${p.id}`)
+    editButtonNode.addEventListener("click", () => {
+      //Add id to hidden input
+      document.getElementById("id").value = p.id
+      document.getElementById("fname").value = p.firstName
+      document.getElementById("lname").value = p.lastName
+      $("#myModal").modal("toggle")
+    })
+    //delete button
+    const deleteButtonNode = document.getElementById(`deleteperson${p.id}`)
+    deleteButtonNode.addEventListener("click", () => handleDeletePerson(p.id))
+  })
+}
+
+export { urls, generateListFromPeople, handlePersonErrors, generateOnClicks }
