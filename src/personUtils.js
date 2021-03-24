@@ -2,7 +2,7 @@ import $ from "jquery"
 import { handleDeletePerson } from "./personFacade"
 
 const urls = {
-  all: "https://api.tobias-z.com/insession-CA2/api/person/",
+  all: "https://api.tobias-z.com/insession-CA2/api/persons/",
   byId: id => `https://api.tobias-z.com/insession-CA2/api/person/`,
 }
 
