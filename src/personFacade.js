@@ -64,6 +64,7 @@ function handleDeletePerson(personId) {
 }
 function handleShowPerson(personId){
     const successNode = document.getElementById("success")
+    $("#showModal").modal("show")
     successNode.innerHTML=`<p>Person with id: ${personId} was shown!</p>`
 }
 export { findAllPeople, handlePersonInput, handleDeletePerson, handleShowPerson }

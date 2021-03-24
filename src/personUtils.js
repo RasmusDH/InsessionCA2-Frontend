@@ -22,7 +22,6 @@ function generateListFromPeople(data) {
   const rows = data.all.map(
     p => `
     <tr>
-    <td>${p.id}</td>
     <td>${p.firstName}</td>
     <td>${p.lastName}</td>
     <td>${p.email}</td>
@@ -54,10 +53,14 @@ function generateOnClicks(data) {
     //delete button
     const deleteButtonNode = document.getElementById(`deleteperson${p.id}`)
     deleteButtonNode.addEventListener("click", () => handleDeletePerson(p.id))
-//show button
-const showButtonNode = document.getElementById(`showperson${p.id}`)
-showButtonNode.addEventListener("click", () => handleShowPerson(p.id))
-
+    //show button
+    const showButtonNode = document.getElementById(`showperson${p.id}`)
+    showButtonNode.addEventListener("click", () => {
+    document.getElementById("showName").innerHTML=`${p.firstName} ${p.lastName}`
+    document.getElementById("showEmail").innerHTML=`${p.email}`
+   
+    handleShowPerson(p.id)
+    })
 
 
   })
