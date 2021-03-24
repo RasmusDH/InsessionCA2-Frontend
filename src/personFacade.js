@@ -58,6 +58,12 @@ function handleDeletePerson(personId) {
       findAllPeople()
     })
     .catch(utils.handlePersonErrors)
-}
 
-export { findAllPeople, handlePersonInput, handleDeletePerson }
+
+
+}
+function handleShowPerson(personId){
+    const successNode = document.getElementById("success")
+    successNode.innerHTML=`<p>Person with id: ${personId} was shown!</p>`
+}
+export { findAllPeople, handlePersonInput, handleDeletePerson, handleShowPerson }
