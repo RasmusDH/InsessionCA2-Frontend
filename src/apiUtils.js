@@ -19,8 +19,10 @@ function makeOptions(method, body) {
     document.getElementById("lastName").value=null;
     document.getElementById("number").value=null;
     document.getElementById("email").value=null;
-    document.getElementById("description").value=null;
-    
+    document.getElementById("street").value=null;
+    document.getElementById("additionalInfo").value=null;
+    document.getElementById("zipCode").value=null;
+    document.getElementById("city").value=null;
   }
   function handleHttpErrors(res) {
     if (!res.ok) {
@@ -40,5 +42,5 @@ function makeOptions(method, body) {
     PUT: "PUT",
   }
   
-  export { fetchRandomData, https }
+  export { fetchRandomData, https,flushModalForm }
   

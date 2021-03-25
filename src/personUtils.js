@@ -1,5 +1,5 @@
 import $ from "jquery"
-import { handleDeletePerson,handleShowPerson } from "./personFacade"
+import { handleShowPerson } from "./personFacade"
 
 const urls = {
   all: "https://api.tobias-z.com/insession-CA2/api/persons/",
@@ -31,8 +31,6 @@ function generateListFromPeople(data) {
     <td>
       <a href="#" id="editperson${p.id}">Edit</a>
       / 
-      <a href="#" id="deleteperson${p.id}">delete</a>
-      / 
       <a href="#" id="showperson${p.id}">show</a>
       </td>
     </tr>
@@ -59,21 +57,19 @@ function generateOnClicks(data) {
       document.getElementById("city").value = p.address.cityInfo.city
       $("#AddModal").modal("show")
     })
-    //delete button
-    const deleteButtonNode = document.getElementById(`deleteperson${p.id}`)
-    deleteButtonNode.addEventListener("click", () => handleDeletePerson(p.id))
+    
     //show button
     const showButtonNode = document.getElementById(`showperson${p.id}`)
     showButtonNode.addEventListener("click", () => {
     document.getElementById("showName").innerHTML=`${p.firstName} ${p.lastName}`
+    document.getElementById("showAddress").innerHTML=`Address:<br>
+    ${p.address.street}<br>
+    ${p.address.cityInfo.zipCode} ${p.address.cityInfo.city}  `
     document.getElementById("showEmail").innerHTML=`Email:<br>${p.email}`
     document.getElementById("showPhones").innerHTML=`Phones:<br>${(p.phones.map(n=>n.number+" ("+n.description+")")).join("<br>")}`
-    document.getElementById("showHobbies").innerHTML=`Hobbies:<br>${(p.hobbies.map(n=>"<a href="+n.wikiLink+">"+n.name+"</a> ("+n.category+") ("+n.type+")")).join("<br>")}`
-
+    document.getElementById("showHobbies").innerHTML=`Hobbies:<br>${(p.hobbies.map(n=>"<a href="+n.wikiLink+" target=\"_blank\">"+n.name+"</a> ("+n.category+") ("+n.type+")")).join("<br>")}`
     handleShowPerson(p.id)
     })
-
-
   })
 }
 
