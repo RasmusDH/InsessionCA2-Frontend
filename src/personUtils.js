@@ -58,7 +58,8 @@ function generateOnClicks(data) {
     const showButtonNode = document.getElementById(`showperson${p.id}`)
     showButtonNode.addEventListener("click", () => {
     document.getElementById("showName").innerHTML=`${p.firstName} ${p.lastName}`
-    document.getElementById("showEmail").innerHTML=`${p.email}`
+    document.getElementById("showEmail").innerHTML=`Email:<br>${p.email}`
+    document.getElementById("showPhones").innerHTML=`Phones:<br>${(p.phones.map(n=>n.number+" ("+n.description+")")).join("<br>")}`
    
     handleShowPerson(p.id)
     })
