@@ -22,9 +22,10 @@ function generateListFromPeople(data) {
   const rows = data.all.map(
     p => `
     <tr>
-    <td>${p.firstName}</td>
-    <td>${p.lastName}</td>
+    <td>${p.firstName} ${p.lastName}</td>
+   
     <td>${p.email}</td>
+    <td>${(p.phones.map(n=>n.number)).join(",")}</td>
     <td>
       <a href="#" id="editperson${p.id}">Edit</a>
       / 
