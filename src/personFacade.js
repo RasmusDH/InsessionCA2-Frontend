@@ -63,13 +63,18 @@ function handleAddPerson(e) {
     phones: [{
       number: document.getElementById("number").value,
       description: document.getElementById("description").value
-    }]
-  };
+    }],
+    hobbies: [
+        
+    ]
 
+  };
+  const methodToUse = document.getElementById("id").value
+  ? https.PUT
+  : https.POST;
 
   const successNode = document.getElementById("success");
-
-  fetchRandomData(utils.urls.all, https.POST, body)
+  fetchRandomData((utils.urls.all+"/"+document.getElementById("id").value), methodToUse, body)
     .then(data => {
       successNode.innerHTML = `<p>Person with name: ${data.firstName}, was created!</p>`;
       findAllPeople();
@@ -90,11 +95,11 @@ function handleEditPerson(e) {
         description: document.getElementById("description").value
       }]
     };
-  
+   
   
     const successNode = document.getElementById("success");
   
-    fetchRandomData(utils.urls.byId(id), https.PUT, body)
+    fetchRandomData(utils.urls.byId(id), http.PUT, body)
       .then(data => {
         successNode.innerHTML = `<p>Person with name: ${data.firstName}, was created!</p>`;
         findAllPeople();

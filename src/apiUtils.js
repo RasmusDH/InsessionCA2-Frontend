@@ -12,6 +12,16 @@ function makeOptions(method, body) {
     return opts
   }
   
+  function flushModalForm(){
+    document.getElementById("email").value=null;
+    document.getElementById("id").value=null;
+    document.getElementById("firstName").value=null;
+    document.getElementById("lastName").value=null;
+    document.getElementById("number").value=null;
+    document.getElementById("email").value=null;
+    document.getElementById("description").value=null;
+    
+  }
   function handleHttpErrors(res) {
     if (!res.ok) {
       return Promise.reject({ status: res.status, fullError: res.json() })

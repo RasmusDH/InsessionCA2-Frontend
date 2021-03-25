@@ -48,8 +48,12 @@ function generateOnClicks(data) {
     editButtonNode.addEventListener("click", () => {
       //Add id to hidden input
       document.getElementById("id").value = p.id
+      document.getElementById("email").value = p.email      
       document.getElementById("firstName").value = p.firstName
       document.getElementById("lastName").value = p.lastName
+      document.getElementById("number").value = p.phones[0].number
+      document.getElementById("description").value = p.phones[0].description
+      
       $("#AddModal").modal("show")
     })
     //delete button
