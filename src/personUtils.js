@@ -4,6 +4,7 @@ import { handleDeletePerson,handleShowPerson } from "./personFacade"
 const urls = {
   all: "https://api.tobias-z.com/insession-CA2/api/persons/",
   byId: id => `https://api.tobias-z.com/insession-CA2/api/persons/${id}`,
+  allCities: "https://api.tobias-z.com/insession-CA2/api/cities/",
 }
 
 function handlePersonErrors(err) {

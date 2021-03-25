@@ -7,84 +7,91 @@
   </head>
 
   <body class="container">
-
-    
-      <div style="min-height: 200px">
-       <h3>Information Search</h3>
-       <p>Here you can search for people and their infomation by entering several search criterias.</p>
-       
-       <div class="row mt-4"> <!-- Row for forms -->
-        <div class="col-4">
-            <p>Type something in the input field to search the table for first names, last names or emails:</p>  
-            <input class="form-control" id="myInput" type="text" placeholder="Search..">
-        </div>
-
-        
-      </div> <!-- End of Row for forms -->
-
-    <h2>All Persons</h2>
     <div style="min-height: 200px">
-      <table class="table" style="width: 90%">
-        <thead>
-          <tr>
-            <td>Name</td>
-            <td>City</td>
-            <td>Email</td>
-            <td>Phones</td>
-            <td>hobbies</td>
-            <td>Edit</td>
-          </tr>
-        </thead>
-        <tbody id="tbody"></tbody>
-      </table>
-    </div>
-    <button type="button" id="reload" class="btn btn-secondary">
-      Reload Data
-    </button>
-    <button
-      type="button"
-      id="addPerson"
-      class="btn btn-primary"
-      data-toggle="modal"
-      data-target="#AddModal"
-    >
-      Add New Person
-    </button>
-    
-    <a h></a>
-    <div
-      id="error"
-      class="alert alert-danger"
-      role="alert"
-      style="width: 50%; margin-top: 10px"
-    ></div>
-    
-    <div
-      class="alert alert-success"
-      style="width: 50%; margin-top: 10px"
-      id="success"
-    ></div>
+      <h3>Information Search</h3>
+      <p>
+        Here you can search for people and their infomation by entering several
+        search criterias.
+      </p>
 
-    
+      <div class="row mt-4">
+        <!-- Row for forms -->
+        <div class="col-4">
+          <p>
+            Type something in the input field to search the table for first
+            names, last names or emails:
+          </p>
+          <input
+            class="form-control"
+            id="myInput"
+            type="text"
+            placeholder="Search.."
+          />
+        </div>
+      </div>
+      <!-- End of Row for forms -->
 
-    <!-- AddPerson Modal -->
-    <div
-      class="modal fade"
-      id="AddModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myModalLabel"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div id="header" class="modal-header">
-            <p>Person</p>
-          </div>
+      <h2>All Persons</h2>
+      <div style="min-height: 200px">
+        <table class="table" style="width: 90%">
+          <thead>
+            <tr>
+              <td>Name</td>
+              <td>City</td>
+              <td>Email</td>
+              <td>Phones</td>
+              <td>hobbies</td>
+              <td>Edit</td>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+      <button type="button" id="reload" class="btn btn-secondary">
+        Reload Data
+      </button>
+      <button
+        type="button"
+        id="addPerson"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#AddModal"
+      >
+        Add New Person
+      </button>
 
-          <form id="add-person">
-            <div class="modal-body">
-              <input type="hidden" id="id" />
-              <div class="form-group">
+      <a h></a>
+      <div
+        id="error"
+        class="alert alert-danger"
+        role="alert"
+        style="width: 50%; margin-top: 10px"
+      ></div>
+
+      <div
+        class="alert alert-success"
+        style="width: 50%; margin-top: 10px"
+        id="success"
+      ></div>
+
+      <!-- AddPerson Modal -->
+      <div
+        class="modal fade"
+        id="AddModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div id="header" class="modal-header">
+              <p>Person</p>
+            </div>
+
+            <form id="add-person">
+              <div class="modal-body">
+                <input type="hidden" id="id" />
+                <div class="form-group">
                   <label for="phone">Email</label>
                   <input
                     type="text"
@@ -93,71 +100,59 @@
                     id="email"
                   />
                 </div>
-              <div class="form-group">
-                <label for="fname">First Name</label>
-                <input 
-                type="text" 
-                class="form-control"
-                name="firstName" 
-                id="firstName" />
-              </div>
-              <div class="form-group">
-                <label for="email">Last Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="lastName"
-                  id="lastName"
-                />
-              </div>
-              <div class="form-group">
-                <label for="street">Street</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="street"
-                  id="street"
-                />
-              </div>
-              <div class="form-group">
-                <label for="additionalInfo">AdditionalInfo</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="additionalInfo"
-                  id="additionalInfo"
-                />
-              </div>
-              <div class="form-group">
-                <label for="zipCode">zipCode</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="zipCode"
-                  id="zipCode"
-                />
-              </div>
-              <div class="form-group">
-                <label for="city">city</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="city"
-                  id="city"
-                />
-              </div>
+                <div class="form-group">
+                  <label for="fname">First Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="firstName"
+                    id="firstName"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="email">Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="lastName"
+                    id="lastName"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="street">Street</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="street"
+                    id="street"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="additionalInfo">AdditionalInfo</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="additionalInfo"
+                    id="additionalInfo"
+                  />
+                </div>
 
+                <div class="form-row">
+                  <label for="zipCode">zipCode</label>
+                  <select id="zipCode" class="form-control" name="zipCode">
+                  </select>
+                </div>
 
-              <div class="form-group">
-                <label for="phone">Phone number</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="number"
-                  id="number"
-                />
-              </div>
-              <div class="form-group">
+                <div class="form-group">
+                  <label for="phone">Phone number</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="number"
+                    id="number"
+                  />
+                </div>
+                <div class="form-group">
                   <label for="phone">Phone description</label>
                   <input
                     type="text"
@@ -167,69 +162,67 @@
                   />
                 </div>
                 <button
-                type="button"
-                id="savePhone"
-                class="btn btn-primary"
-                data-dismiss="modal"
-              >
-                Add phone
-              </button>
+                  type="button"
+                  id="savePhone"
+                  class="btn btn-primary"
+                  data-dismiss="modal"
+                >
+                  Add phone
+                </button>
 
-              <!-- Allow form submission with keyboard without duplicating the dialog button -->
-              <input
-                type="submit"
-                tabindex="-1"
-                style="position: absolute; top: -1000px"
-              />
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-default"
-                data-dismiss="modal"
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                id="savebtn"
-                class="btn btn-primary"
-                data-dismiss="modal"
-              >
-                Save
-              </button>
-            </div>
-          </form>
+                <!-- Allow form submission with keyboard without duplicating the dialog button -->
+                <input
+                  type="submit"
+                  tabindex="-1"
+                  style="position: absolute; top: -1000px"
+                />
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-default"
+                  data-dismiss="modal"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  id="savebtn"
+                  class="btn btn-primary"
+                  data-dismiss="modal"
+                >
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div> <!-- End of AddPerson Modal -->
+      <!-- End of AddPerson Modal -->
 
-     <!-- Modal -->
-     <div
-      class="modal fade"
-      id="showModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myModalLabel"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-
-          <div id="header" class="modal-header">
-            <p id="showName"></p>
-          </div >
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="showModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+      >
+        <div class="modal-dialog" role="document">
           <div class="modal-content">
-          <p id="showEmail"></p>
-          <p id="showPhones"></p>
-          <p id="showHobbies"></p>
-        </div>
+            <div id="header" class="modal-header">
+              <p id="showName"></p>
+            </div>
+            <div class="modal-content">
+              <p id="showEmail"></p>
+              <p id="showPhones"></p>
+              <p id="showHobbies"></p>
+            </div>
+          </div>
         </div>
       </div>
-   </div> <!-- End of Modal -->   
-
-  </div> <!-- End of HTML for Search Page -->
-
-
-
+      <!-- End of Modal -->
+    </div>
+    <!-- End of HTML for Search Page -->
   </body>
 </html>

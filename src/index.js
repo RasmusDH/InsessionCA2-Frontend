@@ -2,7 +2,7 @@ import "./style.css"
 import "bootstrap/dist/css/bootstrap.css"
 import "bootstrap"
 import $ from "jquery"
-import { findAllPeople, handlePersonInput, handleAddPerson } from "./personFacade"
+import { findAllPeople, handlePersonInput, handleAddPerson, findAllZipCodes } from "./personFacade"
 
 // Load all on page load
 findAllPeople()
@@ -14,6 +14,11 @@ $(document).ready(function(){
     });
   });
 });
+
+
+findAllZipCodes()
+
+
 // Reload button
 const reloadButtonNode = document.getElementById("reload")
 reloadButtonNode.addEventListener("click", findAllPeople)
