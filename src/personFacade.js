@@ -18,10 +18,10 @@ function handlePersonInput(e) {
     email: document.getElementById("email").value,
     firstName: document.getElementById("fname").value,
     lastName: document.getElementById("lname").value,
-    phones: {
+    phones: [{
       number: document.getElementById("number").value,
       description: document.getElementById("description").value
-    }
+    }]
   };
   const methodToUse = document.getElementById("id").value
     ? https.PUT
@@ -46,7 +46,12 @@ function handlePersonInput(e) {
       .catch(utils.handlePersonErrors);
   }
 
-  $("#myModal").modal("hide");
+  function handleAddPhoneToPerson(e) {
+      e.preventDefault();
+      
+  }
+
+  $("#AddModal").modal("hide");
 }
 
 function handleAddPerson(e) {
@@ -61,6 +66,7 @@ function handleAddPerson(e) {
     }]
   };
 
+
   const successNode = document.getElementById("success");
 
   fetchRandomData(utils.urls.all, https.POST, body)
@@ -72,6 +78,31 @@ function handleAddPerson(e) {
 
   $("#AddModal").modal("hide");
 }
+
+function handleEditPerson(e) {
+    e.preventDefault();
+    const body = {
+      email: document.getElementById("email").value,
+      firstName: document.getElementById("firstName").value,
+      lastName: document.getElementById("lastName").value,
+      phones: [{
+        number: document.getElementById("number").value,
+        description: document.getElementById("description").value
+      }]
+    };
+  
+  
+    const successNode = document.getElementById("success");
+  
+    fetchRandomData(utils.urls.byId(id), https.PUT, body)
+      .then(data => {
+        successNode.innerHTML = `<p>Person with name: ${data.firstName}, was created!</p>`;
+        findAllPeople();
+      })
+      .catch(utils.handlePersonErrors);
+  
+    $("#EditModal").modal("hide");
+  }
 
 function handleDeletePerson(personId) {
   fetchRandomData(utils.urls.byId(personId), https.DELETE)
@@ -90,4 +121,4 @@ function handleShowPerson(personId){
     $("#showModal").modal("show")
     successNode.innerHTML=`<p>Person with id: ${personId} was shown!</p>`
 }
-export { findAllPeople, handlePersonInput, handleDeletePerson, handleShowPerson }
+export { findAllPeople, handleEditPerson, handlePersonInput, handleDeletePerson, handleShowPerson, handleAddPerson }
