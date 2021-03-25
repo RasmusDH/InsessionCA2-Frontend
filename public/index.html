@@ -46,7 +46,7 @@
       id="addPerson"
       class="btn btn-primary"
       data-toggle="modal"
-      data-target="#myModal"
+      data-target="#AddModal"
     >
       Add New Person
     </button>
@@ -65,10 +65,12 @@
       id="success"
     ></div>
 
-    <!-- Modal -->
+    
+
+    <!-- AddPerson Modal -->
     <div
       class="modal fade"
-      id="myModal"
+      id="AddModal"
       tabindex="-1"
       role="dialog"
       aria-labelledby="myModalLabel"
@@ -79,43 +81,53 @@
             <p>Add Person</p>
           </div>
 
-          <form id="add-person-form">
+          <form id="add-person">
             <div class="modal-body">
               <input type="hidden" id="id" />
               <div class="form-group">
+                  <label for="phone">Email</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="email"
+                    id="email"
+                  />
+                </div>
+              <div class="form-group">
                 <label for="fname">First Name</label>
-                <input type="text" class="form-control" id="fname" />
+                <input 
+                type="text" 
+                class="form-control"
+                name="firstName" 
+                id="firstName" />
               </div>
               <div class="form-group">
                 <label for="email">Last Name</label>
                 <input
                   type="text"
                   class="form-control"
-                  name="lname"
-                  id="lname"
+                  name="lastName"
+                  id="lastName"
                 />
               </div>
               <div class="form-group">
-                <label for="phone">phone</label>
+                <label for="phone">Phone number</label>
                 <input
                   type="text"
                   class="form-control"
-                  name="phone"
-                  id="phone"
+                  name="number"
+                  id="number"
                 />
               </div>
               <div class="form-group">
-                <label for="street">Street</label>
-                <input type="text" class="form-control" id="street" />
-              </div>
-              <div class="form-group">
-                <label for="zip">Zip</label>
-                <input type="text" class="form-control" id="zip" />
-              </div>
-              <div class="form-group">
-                <label for="city">City</label>
-                <input type="text" class="form-control" id="city" />
-              </div>
+                  <label for="phone">Phone description</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="description"
+                    id="description"
+                  />
+                </div>
 
               <!-- Allow form submission with keyboard without duplicating the dialog button -->
               <input
@@ -133,18 +145,18 @@
                 Cancel
               </button>
               <button
-                type="submit"
+                type="button"
                 id="savebtn"
                 class="btn btn-primary"
                 data-dismiss="modal"
               >
-                Save changes
+                Add person
               </button>
             </div>
           </form>
         </div>
       </div>
-    </div> <!-- End of Modal -->
+    </div> <!-- End of AddPerson Modal -->
 
     
 

@@ -2,7 +2,7 @@ import "./style.css"
 import "bootstrap/dist/css/bootstrap.css"
 import "bootstrap"
 import $ from "jquery"
-import { findAllPeople, handlePersonInput } from "./personFacade"
+import { findAllPeople, handlePersonInput, handleAddPerson } from "./personFacade"
 
 // Load all on page load
 findAllPeople()
@@ -19,9 +19,13 @@ const reloadButtonNode = document.getElementById("reload")
 reloadButtonNode.addEventListener("click", findAllPeople)
 
 // Handle the form submit
-const addPersonFormNode = document.getElementById("add-person-form")
-addPersonFormNode.addEventListener("submit", handlePersonInput)
+//const addPersonFormNode = document.getElementById("add-person-form")
+//addPersonFormNode.addEventListener("submit", handlePersonInput)
 
+// Handle the add person form submit
+const addPersonForm = document.getElementById("add-person")
+document.getElementById("savebtn").addEventListener("click", handleAddPerson)
+addPersonForm.addEventListener("submit", handleAddPerson)
 
 
 

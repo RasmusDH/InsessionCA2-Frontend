@@ -1,63 +1,91 @@
-import { fetchRandomData, https } from "./apiUtils"
-import * as utils from "./personUtils"
-import $ from "jquery"
+import { fetchRandomData, https } from "./apiUtils";
+import * as utils from "./personUtils";
+import $ from "jquery";
 
 function findAllPeople() {
   fetchRandomData(utils.urls.all)
     .then(data => {
-      const tableBody = document.getElementById("tbody")
-      tableBody.innerHTML = utils.generateListFromPeople(data)
-      utils.generateOnClicks(data)
+      const tableBody = document.getElementById("tbody");
+      tableBody.innerHTML = utils.generateListFromPeople(data);
+      utils.generateOnClicks(data);
     })
-    .catch(utils.handlePersonErrors)
+    .catch(utils.handlePersonErrors);
 }
 
 function handlePersonInput(e) {
-  e.preventDefault()
+  e.preventDefault();
   const body = {
+    email: document.getElementById("email").value,
     firstName: document.getElementById("fname").value,
     lastName: document.getElementById("lname").value,
-    phoneNumber: document.getElementById("phone").value,
-    address: {
-      street: document.getElementById("street").value,
-      zip: document.getElementById("zip").value,
-      city: document.getElementById("city").value,
-    },
-  }
+    phones: {
+      number: document.getElementById("number").value,
+      description: document.getElementById("description").value
+    }
+  };
   const methodToUse = document.getElementById("id").value
     ? https.PUT
-    : https.POST
+    : https.POST;
 
-  const successNode = document.getElementById("success")
+  const successNode = document.getElementById("success");
 
   if (methodToUse === https.PUT) {
-    const id = document.getElementById("id").value
+    const id = document.getElementById("id").value;
     fetchRandomData(utils.urls.byId(id), methodToUse, body)
       .then(data => {
-        successNode.innerHTML = `<p>Person with name: ${data.firstName}, was edited!</p>`
-        findAllPeople()
+        successNode.innerHTML = `<p>Person with name: ${data.firstName}, was edited!</p>`;
+        findAllPeople();
       })
-      .catch(utils.handlePersonErrors)
+      .catch(utils.handlePersonErrors);
   } else {
     fetchRandomData(utils.urls.all, methodToUse, body)
       .then(data => {
-        successNode.innerHTML = `<p>Person with name: ${data.firstName}, was created!</p>`
-        findAllPeople()
+        successNode.innerHTML = `<p>Person with name: ${data.firstName}, was created!</p>`;
+        findAllPeople();
       })
-      .catch(utils.handlePersonErrors)
+      .catch(utils.handlePersonErrors);
   }
 
-  $("#myModal").modal("hide")
+  $("#myModal").modal("hide");
+}
+
+function handleAddPerson(e) {
+  e.preventDefault();
+  const body = {
+    email: document.getElementById("email").value,
+    firstName: document.getElementById("firstName").value,
+    lastName: document.getElementById("lastName").value,
+    phones: [{
+      number: document.getElementById("number").value,
+      description: document.getElementById("description").value
+    }]
+  };
+
+  const successNode = document.getElementById("success");
+
+  fetchRandomData(utils.urls.all, https.POST, body)
+    .then(data => {
+      successNode.innerHTML = `<p>Person with name: ${data.firstName}, was created!</p>`;
+      findAllPeople();
+    })
+    .catch(utils.handlePersonErrors);
+
+  $("#AddModal").modal("hide");
 }
 
 function handleDeletePerson(personId) {
   fetchRandomData(utils.urls.byId(personId), https.DELETE)
     .then(data => {
-      const successNode = document.getElementById("success")
-      successNode.innerHTML = `<p>Person with name: ${data.firstName} was deleted!</p>`
-      findAllPeople()
+      const successNode = document.getElementById("success");
+      successNode.innerHTML = `<p>Person with name: ${data.firstName} was deleted!</p>`;
+      findAllPeople();
     })
-    .catch(utils.handlePersonErrors)
+    .catch(utils.handlePersonErrors);
 }
 
-export { findAllPeople, handlePersonInput, handleDeletePerson }
+export {
+  findAllPeople,
+  handlePersonInput,
+  handleAddPerson,
+  handleDeletePerson
+};
