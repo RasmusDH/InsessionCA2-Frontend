@@ -26,6 +26,7 @@ function generateListFromPeople(data) {
    
     <td>${p.email}</td>
     <td>${(p.phones.map(n=>n.number)).join(",")}</td>
+    <td>${(p.hobbies.map(h=>h.name)).join(",")}</td>
     <td>
       <a href="#" id="editperson${p.id}">Edit</a>
       / 
@@ -60,7 +61,8 @@ function generateOnClicks(data) {
     document.getElementById("showName").innerHTML=`${p.firstName} ${p.lastName}`
     document.getElementById("showEmail").innerHTML=`Email:<br>${p.email}`
     document.getElementById("showPhones").innerHTML=`Phones:<br>${(p.phones.map(n=>n.number+" ("+n.description+")")).join("<br>")}`
-   
+    document.getElementById("showHobbies").innerHTML=`Hobbies:<br>${(p.hobbies.map(n=>"<a href="+n.wikiLink+">"+n.name+"</a> ("+n.category+") ("+n.type+")")).join("<br>")}`
+
     handleShowPerson(p.id)
     })
 
