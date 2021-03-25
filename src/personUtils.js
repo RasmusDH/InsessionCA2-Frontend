@@ -1,5 +1,5 @@
 import $ from "jquery"
-import { handleDeletePerson } from "./personFacade"
+import { handleDeletePerson,handleShowPerson } from "./personFacade"
 
 const urls = {
   all: "https://api.tobias-z.com/insession-CA2/api/persons/",
@@ -22,7 +22,6 @@ function generateListFromPeople(data) {
   const rows = data.all.map(
     p => `
     <tr>
-    <td>${p.id}</td>
     <td>${p.firstName}</td>
     <td>${p.lastName}</td>
     <td>${p.email}</td>
@@ -30,6 +29,8 @@ function generateListFromPeople(data) {
       <a href="#" id="editperson${p.id}">Edit</a>
       / 
       <a href="#" id="deleteperson${p.id}">delete</a>
+      / 
+      <a href="#" id="showperson${p.id}">show</a>
       </td>
     </tr>
   `
@@ -52,6 +53,16 @@ function generateOnClicks(data) {
     //delete button
     const deleteButtonNode = document.getElementById(`deleteperson${p.id}`)
     deleteButtonNode.addEventListener("click", () => handleDeletePerson(p.id))
+    //show button
+    const showButtonNode = document.getElementById(`showperson${p.id}`)
+    showButtonNode.addEventListener("click", () => {
+    document.getElementById("showName").innerHTML=`${p.firstName} ${p.lastName}`
+    document.getElementById("showEmail").innerHTML=`${p.email}`
+   
+    handleShowPerson(p.id)
+    })
+
+
   })
 }
 

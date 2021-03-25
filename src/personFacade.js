@@ -80,12 +80,14 @@ function handleDeletePerson(personId) {
       successNode.innerHTML = `<p>Person with name: ${data.firstName} was deleted!</p>`;
       findAllPeople();
     })
-    .catch(utils.handlePersonErrors);
-}
+    .catch(utils.handlePersonErrors)
 
-export {
-  findAllPeople,
-  handlePersonInput,
-  handleAddPerson,
-  handleDeletePerson
-};
+
+
+}
+function handleShowPerson(personId){
+    const successNode = document.getElementById("success")
+    $("#showModal").modal("show")
+    successNode.innerHTML=`<p>Person with id: ${personId} was shown!</p>`
+}
+export { findAllPeople, handlePersonInput, handleDeletePerson, handleShowPerson }
