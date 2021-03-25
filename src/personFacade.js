@@ -66,7 +66,15 @@ function handleAddPerson(e) {
     }],
     hobbies: [
         
-    ]
+    ],
+    address: {
+      street: document.getElementById("street").value,
+      additionalInfo: document.getElementById("additionalInfo").value,
+      cityInfo: {
+          zipCode: document.getElementById("zipCode").value,
+          city: document.getElementById("city").value
+      }
+  }
 
   };
   const methodToUse = document.getElementById("id").value
@@ -76,7 +84,7 @@ function handleAddPerson(e) {
   const successNode = document.getElementById("success");
   fetchRandomData((utils.urls.all+"/"+document.getElementById("id").value), methodToUse, body)
     .then(data => {
-      successNode.innerHTML = `<p>Person with name: ${data.firstName}, was created!</p>`;
+      successNode.innerHTML = `<p>Person with name: ${data.firstName}, was saved!</p>`;
       findAllPeople();
     })
     .catch(utils.handlePersonErrors);

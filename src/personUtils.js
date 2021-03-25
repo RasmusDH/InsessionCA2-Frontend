@@ -24,6 +24,7 @@ function generateListFromPeople(data) {
     <tr>
     <td>${p.firstName} ${p.lastName}</td>
    
+    <td>${p.address.cityInfo.city}</td>
     <td>${p.email}</td>
     <td>${(p.phones.map(n=>n.number)).join(",")}</td>
     <td>${(p.hobbies.map(h=>h.name)).join(",")}</td>
@@ -52,8 +53,10 @@ function generateOnClicks(data) {
       document.getElementById("firstName").value = p.firstName
       document.getElementById("lastName").value = p.lastName
       document.getElementById("number").value = p.phones[0].number
-      document.getElementById("description").value = p.phones[0].description
-      
+      document.getElementById("street").value = p.address.street
+      document.getElementById("additionalInfo").value = p.address.additionalInfo
+      document.getElementById("zipCode").value = p.address.cityInfo.zipCode
+      document.getElementById("city").value = p.address.cityInfo.city
       $("#AddModal").modal("show")
     })
     //delete button
