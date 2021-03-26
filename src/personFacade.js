@@ -68,6 +68,7 @@ function findAllHobbies(hobby, defaultHobby) {
       option = document.createElement('option');
       option.text = data.all[i].id + '. ' + data.all[i].name;
       option.value = data.all[i].id + '!' + data.all[i].name + '!' + data.all[i].wikiLink + '!' + data.all[i].category + '!' + data.all[i].type;
+      if (option.value===defaultHobby){option.selected=true}
       dropdown.add(option);
     }
   })
