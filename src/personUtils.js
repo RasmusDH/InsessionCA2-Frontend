@@ -1,5 +1,6 @@
 import $ from "jquery"
-import { handleShowPerson } from "./personFacade"
+import { handleShowPerson, addHobby } from "./personFacade"
+import { flushModalForm } from "./apiUtils";
 
 const urls = {
   all: "https://api.tobias-z.com/insession-CA2/api/persons/",
@@ -47,6 +48,7 @@ function generateOnClicks(data) {
     //edit button
     const editButtonNode = document.getElementById(`editperson${p.id}`)
     editButtonNode.addEventListener("click", () => {
+      flushModalForm()
       //Add id to hidden input
       document.getElementById("id").value = p.id
       document.getElementById("email").value = p.email      
@@ -56,7 +58,10 @@ function generateOnClicks(data) {
       document.getElementById("street").value = p.address.street
       document.getElementById("additionalInfo").value = p.address.additionalInfo
       document.getElementById("zipCode").value = p.address.cityInfo.zipCode+"!"+p.address.cityInfo.city
-      document.getElementById("hobbies").value=p.hobbies[0].id+"!"+p.hobbies[0].name+"!"+p.hobbies[0].wikiLink+"!"+p.hobbies[0].category+"!"+p.hobbies[0].type
+      for (let i = 0; i < p.hobbies.length; i++) {
+        addHobby(p.hobbies[i].id+"!"+p.hobbies[i].name+"!"+p.hobbies[i].wikiLink+"!"+p.hobbies[i].category+"!"+p.hobbies[i].type)
+      }
+      console.log(p);
       $("#AddModal").modal("show")
     })
     

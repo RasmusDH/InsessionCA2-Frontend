@@ -2,6 +2,10 @@ import { fetchRandomData, https ,flushModalForm} from "./apiUtils";
 import * as utils from "./personUtils";
 import $ from "jquery";
 
+var dropdowns = [];
+function resetDropdowns() {
+  dropdowns = [];
+}
 function findAllPeople() {
   fetchRandomData(utils.urls.all)
     .then(data => {
@@ -33,9 +37,23 @@ function findAllZipCodes() {
   });
 }
 
-function findAllHobbies() {
-  let dropdown = document.getElementById("hobbies");
+function addHobby(defaultHobby) {
+  var hobby = "hobby" + dropdowns.length;
+
+  dropdowns.push(hobby);
+  findAllHobbies(hobby, defaultHobby);
+
+}
+
+function findAllHobbies(hobby, defaultHobby) {
+  let dropdownDiv = document.getElementById("hobbies-id");
+
+  let dropdown = document.createElement('select');
+  dropdown.id=hobby;
+  dropdown.className="form-control";
   dropdown.length = 0;
+
+
 
   let defaultOption = document.createElement("option");
   defaultOption.text = "Choose Hobby";
@@ -43,6 +61,7 @@ function findAllHobbies() {
   dropdown.add(defaultOption);
   dropdown.selectedIndex = 0;
 
+  
   fetchRandomData(utils.urls.allHobbies).then(data => {
     let option;
     for (let i = 0; i < data.all.length; i++) {
@@ -52,6 +71,11 @@ function findAllHobbies() {
       dropdown.add(option);
     }
   })
+  
+  defaultOption.value = defaultHobby;
+  dropdownDiv.appendChild(dropdown);
+
+
 }
 
 
@@ -61,9 +85,20 @@ function handleAddPerson(e) {
   var cityInfoStr = document.getElementById("zipCode").value;
   var cityInfoSplit = cityInfoStr.split("!");
 
-  var hobbiesStr = document.getElementById("hobbies").value;
-  var hobbiesSplit = hobbiesStr.split("!");
-  console.log(hobbiesSplit);
+  const hobbyBody = [];
+
+  for (let i = 0; i < dropdowns.length; i++) {
+    var hobbiesStr = document.getElementById(dropdowns[i]).value;
+    var hobbiesSplit = hobbiesStr.split("!");
+
+    hobbyBody.push( { 
+    name: hobbiesSplit[1],
+    wikiLink: hobbiesSplit[2],
+    category: hobbiesSplit[3],
+    type: hobbiesSplit[4]
+  })
+  }
+  
   const body = {
     email: document.getElementById("email").value,
     firstName: document.getElementById("firstName").value,
@@ -74,12 +109,7 @@ function handleAddPerson(e) {
         description: document.getElementById("description").value
       }
     ],
-    hobbies: [{
-      name: hobbiesSplit[1],
-      wikiLink: hobbiesSplit[2],
-      category: hobbiesSplit[3],
-      type: hobbiesSplit[4]
-    }],
+    hobbies: hobbyBody,
     address: {
       street: document.getElementById("street").value,
       additionalInfo: document.getElementById("additionalInfo").value,
@@ -118,5 +148,7 @@ export {
   findAllZipCodes,
   findAllHobbies,
   handleShowPerson,
-  handleAddPerson
+  handleAddPerson,
+  addHobby,
+  resetDropdowns
 };

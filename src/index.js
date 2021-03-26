@@ -2,7 +2,7 @@ import "./style.css"
 import "bootstrap/dist/css/bootstrap.css"
 import "bootstrap"
 import $ from "jquery"
-import { findAllPeople, findAllHobbies, handleAddPerson, findAllZipCodes } from "./personFacade"
+import { findAllPeople, findAllHobbies, handleAddPerson, findAllZipCodes, addHobby } from "./personFacade"
 
 // Load all on page load
 findAllPeople()
@@ -18,7 +18,9 @@ $(document).ready(function(){
 
 findAllZipCodes()
 
-findAllHobbies()
+addHobby()
+const addHobbyButton = document.getElementById("addHobby")
+addHobbyButton.addEventListener("click", addHobby)
 
 // Reload button
 const reloadButtonNode = document.getElementById("reload")

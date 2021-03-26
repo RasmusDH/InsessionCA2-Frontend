@@ -1,3 +1,5 @@
+import {resetDropdowns} from "./personFacade"
+
 function makeOptions(method, body) {
     var opts = {
       method: method,
@@ -22,7 +24,8 @@ function makeOptions(method, body) {
     document.getElementById("street").value=null;
     document.getElementById("additionalInfo").value=null;
     document.getElementById("zipCode").selectedIndex=0;
-    document.getElementById("hobbies").selectedIndex=0;
+    document.getElementById("hobbies-id").innerHTML='<label for="hobbies">Hobbies</label>';
+    resetDropdowns();
   }
   function handleHttpErrors(res) {
     if (!res.ok) {
