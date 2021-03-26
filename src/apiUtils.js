@@ -21,6 +21,8 @@ function makeOptions(method, body) {
     document.getElementById("email").value=null;
     document.getElementById("street").value=null;
     document.getElementById("additionalInfo").value=null;
+    document.getElementById("zipCode").selectedIndex=0;
+    document.getElementById("hobbies").selectedIndex=0;
   }
   function handleHttpErrors(res) {
     if (!res.ok) {

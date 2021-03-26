@@ -55,8 +55,8 @@ function generateOnClicks(data) {
       document.getElementById("number").value = p.phones[0].number
       document.getElementById("street").value = p.address.street
       document.getElementById("additionalInfo").value = p.address.additionalInfo
-      document.getElementById("zipCode").value = p.address.cityInfo.zipCode
-      
+      document.getElementById("zipCode").value = p.address.cityInfo.zipCode+"!"+p.address.cityInfo.city
+      document.getElementById("hobbies").value=p.hobbies[0].id+"!"+p.hobbies[0].name+"!"+p.hobbies[0].wikiLink+"!"+p.hobbies[0].category+"!"+p.hobbies[0].type
       $("#AddModal").modal("show")
     })
     
