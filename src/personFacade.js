@@ -33,12 +33,36 @@ function findAllZipCodes() {
   });
 }
 
+function findAllHobbies() {
+  let dropdown = document.getElementById("hobbies");
+  dropdown.length = 0;
+
+  let defaultOption = document.createElement("option");
+  defaultOption.text = "Choose Hobby";
+
+  dropdown.add(defaultOption);
+  dropdown.selectedIndex = 0;
+
+  fetchRandomData(utils.urls.allHobbies).then(data => {
+    let option;
+    for (let i = 0; i < data.all.length; i++) {
+      option = document.createElement('option');
+      option.text = data.all[i].id + '. ' + data.all[i].name;
+      option.value = data.all[i].id + '!' + data.all[i].name + '!' + data.all[i].wikiLink + '!' + data.all[i].category + '!' + data.all[i].type;
+      dropdown.add(option);
+    }
+  })
+}
+
 
 
 function handleAddPerson(e) {
   e.preventDefault();
   var cityInfoStr = document.getElementById("zipCode").value;
   var cityInfoSplit = cityInfoStr.split(" ");
+
+  var hobbiesStr = document.getElementById("hobbies").value;
+  var hobbiesSplit = hobbiesStr.split("!");
   const body = {
     email: document.getElementById("email").value,
     firstName: document.getElementById("firstName").value,
@@ -49,7 +73,12 @@ function handleAddPerson(e) {
         description: document.getElementById("description").value
       }
     ],
-    hobbies: [],
+    hobbies: {
+      name: hobbiesSplit[1],
+      wikiLink: hobbiesSplit[2],
+      category: hobbiesSplit[3],
+      type: hobbiesSplit[4]
+    },
     address: {
       street: document.getElementById("street").value,
       additionalInfo: document.getElementById("additionalInfo").value,
@@ -86,6 +115,7 @@ function handleShowPerson(personId) {
 export {
   findAllPeople,
   findAllZipCodes,
+  findAllHobbies,
   handleShowPerson,
   handleAddPerson
 };

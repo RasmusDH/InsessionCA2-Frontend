@@ -5,6 +5,7 @@ const urls = {
   all: "https://api.tobias-z.com/insession-CA2/api/persons/",
   byId: id => `https://api.tobias-z.com/insession-CA2/api/persons/${id}`,
   allCities: "https://api.tobias-z.com/insession-CA2/api/cities/",
+  allHobbies: "https://api.tobias-z.com/insession-CA2/api/hobbies/"
 }
 
 function handlePersonErrors(err) {
@@ -55,7 +56,7 @@ function generateOnClicks(data) {
       document.getElementById("street").value = p.address.street
       document.getElementById("additionalInfo").value = p.address.additionalInfo
       document.getElementById("zipCode").value = p.address.cityInfo.zipCode
-      document.getElementById("city").value = p.address.cityInfo.city
+      
       $("#AddModal").modal("show")
     })
     
