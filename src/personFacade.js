@@ -27,7 +27,7 @@ function findAllZipCodes() {
     for (let i = 0; i < data.all.length; i++) {
       option = document.createElement('option');
       option.text = data.all[i].zipCode + ' ' + data.all[i].city;
-      option.value = data.all[i].zipCode + ' ' + data.all[i].city;
+      option.value = data.all[i].zipCode + '!' + data.all[i].city;
       dropdown.add(option);
     }
   });
@@ -59,10 +59,11 @@ function findAllHobbies() {
 function handleAddPerson(e) {
   e.preventDefault();
   var cityInfoStr = document.getElementById("zipCode").value;
-  var cityInfoSplit = cityInfoStr.split(" ");
+  var cityInfoSplit = cityInfoStr.split("!");
 
   var hobbiesStr = document.getElementById("hobbies").value;
   var hobbiesSplit = hobbiesStr.split("!");
+  console.log(hobbiesSplit);
   const body = {
     email: document.getElementById("email").value,
     firstName: document.getElementById("firstName").value,
@@ -73,12 +74,12 @@ function handleAddPerson(e) {
         description: document.getElementById("description").value
       }
     ],
-    hobbies: {
+    hobbies: [{
       name: hobbiesSplit[1],
       wikiLink: hobbiesSplit[2],
       category: hobbiesSplit[3],
       type: hobbiesSplit[4]
-    },
+    }],
     address: {
       street: document.getElementById("street").value,
       additionalInfo: document.getElementById("additionalInfo").value,
@@ -91,10 +92,10 @@ function handleAddPerson(e) {
   const methodToUse = document.getElementById("id").value
     ? https.PUT
     : https.POST;
-
+  console.log(body);
   const successNode = document.getElementById("success");
   fetchRandomData(
-    utils.urls.all + "/" + document.getElementById("id").value,
+    utils.urls.all + document.getElementById("id").value,
     methodToUse,
     body
   )
